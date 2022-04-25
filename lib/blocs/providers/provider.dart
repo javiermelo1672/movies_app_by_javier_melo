@@ -1,4 +1,5 @@
 import 'package:leal_test_by_javier_melo/blocs/detailed_bloc.dart';
+import 'package:leal_test_by_javier_melo/blocs/detailed_movie_bloc.dart';
 import 'package:leal_test_by_javier_melo/blocs/favourites_bloc.dart';
 import 'package:leal_test_by_javier_melo/blocs/home_bloc.dart';
 import 'package:leal_test_by_javier_melo/blocs/login_bloc.dart';
@@ -44,6 +45,10 @@ class Provider {
         {
           return BlocCache.getBlocInstance("Searchbloc", instance) as T?;
         }
+      case DetailedMoviebloc:
+        {
+          return BlocCache.getBlocInstance("DetailedMoviebloc", instance) as T?;
+        }
     }
     return null;
   }
@@ -88,6 +93,11 @@ class Provider {
       case Searchbloc:
         {
           BlocCache.dispose("Searchbloc");
+          break;
+        }
+      case DetailedMoviebloc:
+        {
+          BlocCache.dispose("DetailedMoviebloc");
           break;
         }
     }

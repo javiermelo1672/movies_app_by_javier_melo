@@ -1,6 +1,7 @@
 import 'package:leal_test_by_javier_melo/app/settings/application.dart';
 import 'package:leal_test_by_javier_melo/data/movies_data_respository.dart';
 import 'package:leal_test_by_javier_melo/data_source/api_base_source.dart';
+import 'package:leal_test_by_javier_melo/models/detailed_movie_model.dart';
 import 'package:leal_test_by_javier_melo/models/recommendations_movies_response.dart';
 import 'package:leal_test_by_javier_melo/models/result_response_model.dart';
 import 'package:leal_test_by_javier_melo/utils/connectivity/my_connectivity.dart';
@@ -37,6 +38,15 @@ class MoviesDataApiSourceImpl extends ApiBaseSource
 
     return get<RecommendationsMoviesResponse>(url, (value) {
       return RecommendationsMoviesResponse.fromJson(value);
+    });
+  }
+
+  @override
+  Future<ResultResponse<DetailledMovieResponse>> getDetailedMovie(String id) {
+    var url = '$baseUrl/movie/$id?api_key=${Application().appSettings?.token}';
+
+    return get<DetailledMovieResponse>(url, (value) {
+      return DetailledMovieResponse.fromJson(value);
     });
   }
 }
