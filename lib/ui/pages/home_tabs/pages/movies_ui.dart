@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:leal_test_by_javier_melo/app/settings/app_colors.dart';
+import 'package:leal_test_by_javier_melo/app/shared_preferences/shared_preferences/shared_preferences_data.dart';
 
 import 'package:leal_test_by_javier_melo/blocs/movies_bloc.dart';
 import 'package:leal_test_by_javier_melo/data_injector/injector.dart';
 import 'package:leal_test_by_javier_melo/ui/base_state.dart';
 import 'package:leal_test_by_javier_melo/ui/no_unique_widgets_factory/abstract_factory.dart';
+import 'package:leal_test_by_javier_melo/ui/pages/auth/login_ui.dart';
 import 'package:leal_test_by_javier_melo/ui/pages/detail_page.dart';
 import 'package:leal_test_by_javier_melo/ui/unique_widgets/movies_poster.dart';
 import 'package:leal_test_by_javier_melo/ui/unique_widgets/recommendations_movies_poster.dart';
@@ -59,8 +61,10 @@ class _MoviesUIState extends BaseState<MoviesUI, MoviesBloc> {
               icon: const Icon(Icons.settings),
               tooltip: 'Log out',
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Unimplemented feature')));
+                final _preferenceData = SharedPreferenceData();
+                _preferenceData.setSharedPreferenceValueString("name", "");
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => LoginUI()));
               },
             ),
           ],

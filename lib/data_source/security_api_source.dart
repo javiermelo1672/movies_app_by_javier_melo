@@ -1,3 +1,4 @@
+import 'package:leal_test_by_javier_melo/app/shared_preferences/shared_preferences/shared_preferences_data.dart';
 import 'package:leal_test_by_javier_melo/data/security_repository.dart';
 import 'package:leal_test_by_javier_melo/data_source/api_base_source.dart';
 import 'package:leal_test_by_javier_melo/models/login_request_model.dart';
@@ -16,10 +17,13 @@ class SecurityApiSourceImpl extends ApiBaseSource implements SecurityApiSource {
           connectivity,
         );
 
+  final _preferenceData = SharedPreferenceData();
   @override
   Future<LoginResponse> login(LoginRequest authenticationRequest) {
     if (authenticationRequest.name == "maria" &&
         authenticationRequest.password == "password") {
+      _preferenceData.setSharedPreferenceValueString(
+          "name", authenticationRequest.name ?? "");
       return Future.value(LoginResponse(
         statusCode: "200",
         token: "123",
@@ -27,6 +31,8 @@ class SecurityApiSourceImpl extends ApiBaseSource implements SecurityApiSource {
       ));
     } else if (authenticationRequest.name == "pedro" &&
         authenticationRequest.password == "123456") {
+      _preferenceData.setSharedPreferenceValueString(
+          "name", authenticationRequest.name ?? "");
       return Future.value(LoginResponse(
         statusCode: "200",
         token: "123",

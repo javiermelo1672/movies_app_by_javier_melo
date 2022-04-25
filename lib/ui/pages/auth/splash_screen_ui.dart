@@ -41,22 +41,50 @@ class _SplashScreenUIState extends BaseState<SplashScreenUI, SplashBloc> {
   void retry() {
     bloc!.validateLoginState().then((value) {
       if (value) {
+        goToHome();
       } else {
         goToLogin();
       }
     });
   }
 
-  Future<void> goToHome() async {}
+  Future<void> goToHome() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (context) => HomeUI()));
+      }
+    } on SocketException catch (_) {
+      bool? isUserLocked;
+      showCustomAlert(
+        icon: Icons.signal_wifi_off,
+        color: Colors.red,
+        message: l10n!.error,
+        title: l10n!.messageError!,
+        positiveTextButton:
+            (isUserLocked ?? false) ? l10n!.accept : l10n!.retry,
+        positiveOnPressed: () {
+          (isUserLocked ?? false)
+              ? const Text("error")
+              : (Navigator.of(context).pop());
+          retry();
+        },
+        negativeTextButton:
+            (isUserLocked ?? false) ? l10n!.accept : l10n!.cancel,
+        negativeOnPressed: () {
+          (isUserLocked ?? false) ? const Text("error") : exit(0);
+        },
+      );
+    }
+  }
 
   Future<void> goToLogin() async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        // Navigator.of(context).pushReplacement(
-        //     MaterialPageRoute(builder: (context) => LoginUI()));
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (context) => HomeUI()));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LoginUI()));
       }
     } on SocketException catch (_) {
       bool? isUserLocked;
