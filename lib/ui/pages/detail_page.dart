@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:leal_test_by_javier_melo/app/settings/app_colors.dart';
+import 'package:leal_test_by_javier_melo/blocs/detailed_bloc.dart';
 import 'package:leal_test_by_javier_melo/models/popular_movies_response.dart';
+import 'package:leal_test_by_javier_melo/ui/base_state.dart';
 import 'package:leal_test_by_javier_melo/ui/unique_widgets/detailed_movies_poster.dart';
 import 'package:leal_test_by_javier_melo/ui/unique_widgets/recommendations_movies_poster.dart';
 
@@ -12,7 +14,7 @@ class DetailPage extends StatefulWidget {
   State<DetailPage> createState() => _DetailPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPageState extends BaseState<DetailPage, Detailedbloc> {
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
@@ -100,4 +102,7 @@ class _DetailPageState extends State<DetailPage> {
       );
     }
   }
+
+  @override
+  getBlocInstance() => Detailedbloc();
 }
