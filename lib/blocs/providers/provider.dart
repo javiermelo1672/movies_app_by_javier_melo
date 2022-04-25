@@ -4,6 +4,8 @@ import 'package:leal_test_by_javier_melo/blocs/home_bloc.dart';
 import 'package:leal_test_by_javier_melo/blocs/login_bloc.dart';
 import 'package:leal_test_by_javier_melo/blocs/movies_bloc.dart';
 import 'package:leal_test_by_javier_melo/blocs/providers/bloc_cache.dart';
+import 'package:leal_test_by_javier_melo/blocs/recents_bloc.dart';
+import 'package:leal_test_by_javier_melo/blocs/search_bloc.dart';
 import 'package:leal_test_by_javier_melo/blocs/splash_bloc.dart';
 import 'bloc.dart';
 
@@ -33,6 +35,14 @@ class Provider {
       case Detailedbloc:
         {
           return BlocCache.getBlocInstance("Detailedbloc", instance) as T?;
+        }
+      case Recentsbloc:
+        {
+          return BlocCache.getBlocInstance("Recentsbloc", instance) as T?;
+        }
+      case Searchbloc:
+        {
+          return BlocCache.getBlocInstance("Searchbloc", instance) as T?;
         }
     }
     return null;
@@ -68,6 +78,16 @@ class Provider {
       case Detailedbloc:
         {
           BlocCache.dispose("Detailedbloc");
+          break;
+        }
+      case Recentsbloc:
+        {
+          BlocCache.dispose("Recentsbloc");
+          break;
+        }
+      case Searchbloc:
+        {
+          BlocCache.dispose("Searchbloc");
           break;
         }
     }

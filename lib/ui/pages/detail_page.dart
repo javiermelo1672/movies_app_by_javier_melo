@@ -4,7 +4,6 @@ import 'package:leal_test_by_javier_melo/blocs/detailed_bloc.dart';
 import 'package:leal_test_by_javier_melo/models/popular_movies_response.dart';
 import 'package:leal_test_by_javier_melo/ui/base_state.dart';
 import 'package:leal_test_by_javier_melo/ui/unique_widgets/detailed_movies_poster.dart';
-import 'package:leal_test_by_javier_melo/ui/unique_widgets/recommendations_movies_poster.dart';
 
 class DetailPage extends StatefulWidget {
   final List<Result> results;

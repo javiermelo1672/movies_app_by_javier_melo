@@ -4,6 +4,8 @@ import 'package:leal_test_by_javier_melo/blocs/home_bloc.dart';
 import 'package:leal_test_by_javier_melo/ui/base_state.dart';
 import 'package:leal_test_by_javier_melo/ui/pages/home_tabs/pages/favourites_ui.dart';
 import 'package:leal_test_by_javier_melo/ui/pages/home_tabs/pages/movies_ui.dart';
+import 'package:leal_test_by_javier_melo/ui/pages/home_tabs/pages/recents_ui.dart';
+import 'package:leal_test_by_javier_melo/ui/pages/home_tabs/pages/search_ui.dart';
 import 'package:leal_test_by_javier_melo/ui/unique_widgets/fab_bottom_app_bar.dart';
 
 class HomeUI extends StatefulWidget {
@@ -55,8 +57,8 @@ class _HomeUIState extends BaseState<HomeUI, Homebloc> {
               children: <Widget>[
                 MoviesUI(),
                 FavouritesUI(),
-                MoviesUI(),
-                MoviesUI(),
+                RecentsUI(),
+                SearchUI(),
               ],
               controller: _controller,
             ),
